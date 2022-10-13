@@ -1,0 +1,3757 @@
+{
+	"info": {
+		"_postman_id": "822e3155-0d4d-4495-90a1-4bac030ab5df",
+		"name": "Unified API - Regression",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "19278370-822e3155-0d4d-4495-90a1-4bac030ab5df"
+	},
+	"item": [
+		{
+			"name": "GenerateAccessTokens",
+			"item": [
+				{
+					"name": "GenerateAccessTokenPayments",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('Test-Step-Index', 1);\r",
+									"pm.environment.set('Test-Step-Index-String', \"0\")"
+								],
+								"type": "text/javascript",
+								"id": "409b9658-a5ca-47ab-8675-f145b137b017"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json()\r",
+									"let index = pm.environment.get('Test-Step-Index-String'); \r",
+									"pm.test(index+\" 2.0 Auth token exists \", function () {\r",
+									"    pm.expect('access_token' in jsonData).to.eql(true);\r",
+									"\r",
+									"    if(jsonData.access_token){\r",
+									"        pm.environment.set('OAuto-2.0-Token', jsonData.access_token);\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"id": "c9337a71-2e12-4522-8545-7b1ebe6fff06"
+							}
+						}
+					],
+					"id": "92582589-f888-485a-bb18-80d63d3f5ec1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{OAuth-2.0-Password-Payments}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{OAuth-2.0-ClientId-Payments}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "{{Api-Scope-PaymantService}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://login.microsoftonline.com/{{Api-TenantId}}/oauth2/v2.0/token",
+							"protocol": "https",
+							"host": [
+								"login",
+								"microsoftonline",
+								"com"
+							],
+							"path": [
+								"{{Api-TenantId}}",
+								"oauth2",
+								"v2.0",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GenerateAccessTokenOnboarding",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"id": "d4ca42a3-a53a-4b65-82c5-438edc3d50e5"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json()\r",
+									"let index = pm.environment.get('Test-Step-Index-String'); \r",
+									"\r",
+									"pm.test(index +\" 2.0 Auth token exists \", function () {\r",
+									"    pm.expect('access_token' in jsonData).to.eql(true);\r",
+									"    if(jsonData.access_token){\r",
+									"        pm.environment.set('OAuto-2.0-Token-onboarding', jsonData.access_token);\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "81a66aec-f9fc-4e2a-b601-70f5b8fe929a"
+							}
+						}
+					],
+					"id": "321b2a2b-396f-4fe3-a3d2-4006e61e6bd9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{OAuth-2.0-Password-Onboarding}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{OAuth-2.0-ClientId-OnBoarding}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "{{Api-Scope-MerchantService}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://login.microsoftonline.com/{{Api-TenantId}}/oauth2/v2.0/token",
+							"protocol": "https",
+							"host": [
+								"login",
+								"microsoftonline",
+								"com"
+							],
+							"path": [
+								"{{Api-TenantId}}",
+								"oauth2",
+								"v2.0",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GenerateAccessTokenTokenization",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"id": "423e02f6-f7c4-4a3b-99cd-524c0162ca9f"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json()\r",
+									"let index = pm.environment.get('Test-Step-Index-String'); \r",
+									"pm.test(index+\" 2.0 Auth token exists \", function () {\r",
+									"    pm.expect('access_token' in jsonData).to.eql(true);\r",
+									"\r",
+									"    if(jsonData.access_token){\r",
+									"        pm.environment.set('OAuto-2.0-Token-TokenizationService', jsonData.access_token);\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"id": "c0bbbbca-9050-4a30-aad4-124059e51595"
+							}
+						}
+					],
+					"id": "a22f8dd1-2f10-4809-a1c6-a62a7e53c7ae",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{OAuth-2.0-Password-Payments}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{OAuth-2.0-ClientId-Payments}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "{{Api-Scope-TokenizationService}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://login.microsoftonline.com/{{Api-TenantId}}/oauth2/v2.0/token",
+							"protocol": "https",
+							"host": [
+								"login",
+								"microsoftonline",
+								"com"
+							],
+							"path": [
+								"{{Api-TenantId}}",
+								"oauth2",
+								"v2.0",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "4b217dee-84b3-4d70-8636-55ed5efa842d",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						],
+						"id": "1eaef206-1372-4a2b-b898-3bff7b41efbc"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"let index = pm.environment.get('Test-Step-Index-String');",
+							"",
+							"pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, function () {",
+							"        pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 302]);",
+							"}); "
+						],
+						"id": "fcbe6589-0afc-45b4-804d-f538a481e777"
+					}
+				}
+			]
+		},
+		{
+			"name": "Ecom",
+			"item": [
+				{
+					"name": "Payments Tests",
+					"item": [
+						{
+							"name": "Visa",
+							"item": [
+								{
+									"name": "MotoPayments",
+									"item": [
+										{
+											"name": "Moto_Visa_Refund",
+											"item": [
+												{
+													"name": "Moto_Visa_RegisterPayment",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	"var responseOrderNumber = pm.environment.get(\"Reponse-Order-Number\")\r",
+																	"responseOrderNumber = parseInt(responseOrderNumber) + 1\r",
+																	"pm.environment.set(\"Reponse-Order-Number\", responseOrderNumber)"
+																],
+																"type": "text/javascript",
+																"id": "2b5e04df-b483-47e9-af28-c9c0378fde96"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let index = pm.environment.get('Test-Step-Index-String');  \r",
+																	"\r",
+																	"var jsonData = pm.response.json(); \r",
+																	"pm.test(index+\" PaymentId: \" + jsonData.paymentId, function () {\r",
+																	"    pm.expect('paymentId' in jsonData).to.eql(true);\r",
+																	"\r",
+																	"    if(jsonData.paymentId){\r",
+																	"        pm.environment.set('Reponse-Payment-Id', jsonData.paymentId);\r",
+																	"    }\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" paypageURL is empty\" + jsonData.paypageURL, function () {\r",
+																	"    pm.expect(jsonData.paypageURL).to.eql(\"\");\r",
+																	"});"
+																],
+																"type": "text/javascript",
+																"id": "57bb2f35-d937-46fb-b2ea-02f882d66475"
+															}
+														}
+													],
+													"id": "3d4fe0da-f77d-4c8c-b198-1e02385cbac4",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"type\": \"Moto\",\r\n    \"paymentNumber\": \"TestOrder-{{Reponse-Order-Number}}\",\r\n    \"checkoutText\": \"TestOrderFromPostMan\",\r\n    \"reconciliationReference\": \"ref1\",\r\n    \"amount\": 100,\r\n    \"currencyCode\": \"{{Currency}}\",\r\n    \"cardDetails\": {\r\n        \"pan\": \"{{Visa(Debit)}}\",\r\n        \"expiryYear\": {{Visa(Year)}},\r\n        \"expiryMonth\": {{Visa(Month)}},\r\n        \"validationCode\": \"{{Visa(SecurityCode)}}\"\r\n    }\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}",
+															"host": [
+																"{{PaymentServiceURL}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Moto_Visa_AuthorizePayment",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "4dccb52a-b736-4644-b40b-6bcf1687b8aa"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "0640246c-5c00-4809-98fc-6e786394ee64"
+															}
+														}
+													],
+													"id": "6aa7025b-6243-477b-aba6-5fa44a18c8bc",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"AuthorizationTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/authorize",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"authorize"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Moto_Visa_CapturePayment",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "362cb34b-4dbd-4a77-a417-f3975cd8e0fc"
+															}
+														},
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "a3b207d0-a4aa-4d8c-a440-3eb12669c463"
+															}
+														}
+													],
+													"id": "1ab93bc0-64ae-4eb1-aed1-460d0099a4bc",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"CaptureTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/capture",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"capture"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Moto_Visa_RefundPayment",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "7a2050b7-6a71-4378-8075-1f1df63a245e"
+															}
+														}
+													],
+													"id": "59a23cbf-3ee8-4876-a145-59bd7e614cae",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"RefundTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/refund",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"refund"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"id": "d5ce1cc2-0c8e-4ba3-841d-52a26ae473c7",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															""
+														],
+														"id": "76887031-e50c-453f-bc71-4d9b69331c2c"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															""
+														],
+														"id": "795a80b3-4cc0-4b0b-aab7-9d20e13b838c"
+													}
+												}
+											]
+										},
+										{
+											"name": "Moto_Visa_Cancel",
+											"item": [
+												{
+													"name": "Moto_Visa_RegisterPayment",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	"var responseOrderNumber = pm.environment.get(\"Reponse-Order-Number\")\r",
+																	"responseOrderNumber = parseInt(responseOrderNumber) + 1\r",
+																	"pm.environment.set(\"Reponse-Order-Number\", responseOrderNumber)"
+																],
+																"type": "text/javascript",
+																"id": "370ec25e-f625-42ff-8518-b3525a7ddd77"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let index = pm.environment.get('Test-Step-Index-String');  \r",
+																	"\r",
+																	"var jsonData = pm.response.json(); \r",
+																	"pm.test(index+\" PaymentId: \" + jsonData.paymentId, function () {\r",
+																	"    pm.expect('paymentId' in jsonData).to.eql(true);\r",
+																	"\r",
+																	"    if(jsonData.paymentId){\r",
+																	"        pm.environment.set('Reponse-Payment-Id', jsonData.paymentId);\r",
+																	"    }\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" paypageURL is empty\" + jsonData.paypageURL, function () {\r",
+																	"    pm.expect(jsonData.paypageURL).to.eql(\"\");\r",
+																	"});\r",
+																	"\r",
+																	"\r",
+																	""
+																],
+																"type": "text/javascript",
+																"id": "4f1e2efd-5e9b-48ae-bf7e-c915665a7cbf"
+															}
+														}
+													],
+													"id": "50604b46-3077-4ae5-84aa-4b7872b3e333",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"type\": \"Moto\",\r\n    \"paymentNumber\": \"TestOrder-{{Reponse-Order-Number}}\",\r\n    \"checkoutText\": \"TestOrderFromPostMan\",\r\n    \"reconciliationReference\": \"ref1\",\r\n    \"amount\": 100,\r\n    \"currencyCode\": \"{{Currency}}\",\r\n    \"cardDetails\": {\r\n        \"pan\": \"{{Visa(Debit)}}\",\r\n        \"expiryYear\": {{Visa(Year)}},\r\n        \"expiryMonth\": {{Visa(Month)}},\r\n        \"validationCode\": \"{{Visa(SecurityCode)}}\"\r\n    }\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}",
+															"host": [
+																"{{PaymentServiceURL}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Moto_Visa_AuthorizePayment",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "9453430d-4791-4cc2-8056-a0de1729cb98"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "899362c8-deca-4122-ba95-7f92dbb7ecd2"
+															}
+														}
+													],
+													"id": "30e74347-33e0-4021-9f53-ce15207a9164",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"AuthorizationTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/authorize",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"authorize"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Moto_Visa_CancelPayment",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "1f993e42-cc47-40e1-88dd-9c310d94a940"
+															}
+														}
+													],
+													"id": "a0b7a5d1-53da-4844-bc74-94d086934ecc",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"description\":\"CancelationTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/cancel",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"cancel"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"id": "a22bd859-d90a-495f-92c2-b52da036b1e6",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															""
+														],
+														"id": "29ad5021-c8d3-477d-ba96-cbd48e085a48"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															""
+														],
+														"id": "b005012b-1e70-4377-8db5-4dc08d211ca5"
+													}
+												}
+											]
+										},
+										{
+											"name": "Moto_Visa_Sale",
+											"item": [
+												{
+													"name": "Moto_Visa_RegisterPaymentSale",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	"var responseOrderNumber = pm.environment.get(\"Reponse-Order-Number\")\r",
+																	"responseOrderNumber = parseInt(responseOrderNumber) + 1\r",
+																	"pm.environment.set(\"Reponse-Order-Number\", responseOrderNumber)"
+																],
+																"type": "text/javascript",
+																"id": "5677bb4f-27ce-4fc4-8b35-875c83b354ab"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let index = pm.environment.get('Test-Step-Index-String');  \r",
+																	"\r",
+																	"var jsonData = pm.response.json(); \r",
+																	"\r",
+																	"pm.test(index+\" PaymentId: \" + jsonData.paymentId, function () {\r",
+																	"    pm.expect('paymentId' in jsonData).to.eql(true);\r",
+																	"    if(jsonData.paymentId){\r",
+																	"        pm.environment.set('Reponse-Payment-Id', jsonData.paymentId);\r",
+																	"    }\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" paypageURL is empty\" + jsonData.paypageURL, function () {\r",
+																	"    pm.expect(jsonData.paypageURL).to.eql(\"\");\r",
+																	"});"
+																],
+																"type": "text/javascript",
+																"id": "16cf4308-b557-4773-bbaf-c28dcc843b98"
+															}
+														}
+													],
+													"id": "7b42a743-aa16-4160-8e15-c7566f1c40f0",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"type\": \"Moto\",\r\n    \"paymentNumber\": \"TestOrder-{{Reponse-Order-Number}}\",\r\n    \"checkoutText\": \"TestOrderFromPostMan\",\r\n    \"reconciliationReference\": \"ref1\",\r\n    \"amount\": 100,\r\n    \"currencyCode\": \"{{Currency}}\",\r\n    \"cardDetails\": {\r\n        \"pan\": \"{{Visa(Debit)}}\",\r\n        \"expiryYear\": {{Visa(Year)}},\r\n        \"expiryMonth\": {{Visa(Month)}},\r\n        \"validationCode\": \"{{Visa(SecurityCode)}}\"\r\n    }\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}",
+															"host": [
+																"{{PaymentServiceURL}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Moto_Visa_SalePayment",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "a9a24894-ba56-487e-b8ad-29d3d9693816"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "ccd0661a-68ea-4516-ab6d-fb1107a897e3"
+															}
+														}
+													],
+													"id": "248de9fa-06dd-4f9b-9b03-99697fc7e6b7",
+													"protocolProfileBehavior": {
+														"followRedirects": true,
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"SaleTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/sale",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"sale"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "GetPayment_CheckIfAuthorizedAndCaptured",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "fd36a597-978b-4416-a062-5809047c720d"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let index = pm.environment.get('Test-Step-Index-String');\r",
+																	"var jsonData = pm.response.json();\r",
+																	"var envOrderNumber = \"TestOrder-\" + pm.environment.get('Reponse-Order-Number')\r",
+																	"\r",
+																	"pm.test(index + \" Transaction was authorized\", function () {\r",
+																	"    pm.expect(jsonData.authorizations[0].amount).to.eql(100)\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index + \" Transaction was captured\", function () {\r",
+																	"    pm.expect(jsonData.captures[0].amount).to.eql(100)\r",
+																	"});"
+																],
+																"type": "text/javascript",
+																"id": "3f7bedf6-5b2a-4c2e-92ce-2097e88681b9"
+															}
+														}
+													],
+													"id": "a8af9990-75e6-4830-a737-700525f2a6f1",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"id": "1a05981d-1aaf-442b-a969-2d601eaf6b98"
+										}
+									],
+									"id": "4c948d10-b574-46c1-b9a7-de9b4cf597c1"
+								},
+								{
+									"name": "MerchantHostedEcom",
+									"item": [
+										{
+											"name": "MerchantHostedEcom_Visa_Refund",
+											"item": [
+												{
+													"name": "MerchantHostedEcom_Visa_RegisterPayment",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	"var responseOrderNumber = pm.environment.get(\"Reponse-Order-Number\")\r",
+																	"responseOrderNumber = parseInt(responseOrderNumber) + 1\r",
+																	"pm.environment.set(\"Reponse-Order-Number\", responseOrderNumber)"
+																],
+																"type": "text/javascript",
+																"id": "3ea3a7fb-4873-4b74-84f3-d1317b1587f1"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let index = pm.environment.get('Test-Step-Index-String');  \r",
+																	"\r",
+																	"var jsonData = pm.response.json(); \r",
+																	"pm.test(index+\" PaymentId: \" + jsonData.paymentId, function () {\r",
+																	"    pm.expect('paymentId' in jsonData).to.eql(true);\r",
+																	"\r",
+																	"    if(jsonData.paymentId){\r",
+																	"        pm.environment.set('Reponse-Payment-Id', jsonData.paymentId);\r",
+																	"    }\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" paypageURL: \" + jsonData.paypageURL, function () {\r",
+																	"    pm.expect('paypageURL' in jsonData).to.eql(true);\r",
+																	"    if(jsonData.paypageURL){\r",
+																	"        pm.environment.set('Reponse-paypage-URL', jsonData.paypageURL);\r",
+																	"    }\r",
+																	"});"
+																],
+																"type": "text/javascript",
+																"id": "41e3dbf6-b443-4332-b506-76b932b0adbf"
+															}
+														}
+													],
+													"id": "303d4117-fe44-4ce4-b85f-49365cfd4699",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"type\": \"MerchantHostedEcom\",\r\n    \"paymentNumber\": \"TestOrder-{{Reponse-Order-Number}}\",\r\n    \"checkoutText\": \"TestOrderFromPostMan\",\r\n    \"reconciliationReference\": \"ref1\",\r\n    \"amount\": 100,\r\n    \"currencyCode\": \"{{Currency}}\",\r\n    \"redirectUrls\": {\r\n        \"returnUrl\": \"https://nets.eu\"\r\n    }\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}",
+															"host": [
+																"{{PaymentServiceURL}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "MerchantHostedEcom_Visa_CheckOut",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let index = pm.environment.get('Test-Step-Index-String');\r",
+																	"\r",
+																	"pm.test(index+\" Has No 'Transaksjonen er allerede behandlet'\", function () {    \r",
+																	"    var idx = pm.response.text().indexOf('Transaksjonen er allerede behandlet')\r",
+																	"    pm.expect(idx).to.be.eql(-1);\r",
+																	"});"
+																],
+																"type": "text/javascript",
+																"id": "7b291a2b-d70d-4177-9368-d12421295a8e"
+															}
+														}
+													],
+													"id": "ae9f2479-e191-45ce-84e5-b77d81d761dd",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{Reponse-paypage-URL}}&pan={{Visa(Debit)}}&expiryDate={{Visa(Month)}}{{Visa(Year)}}&securityCode={{Visa(SecurityCode)}}",
+															"host": [
+																"{{Reponse-paypage-URL}}&pan={{Visa(Debit)}}&expiryDate={{Visa(Month)}}{{Visa(Year)}}&securityCode={{Visa(SecurityCode)}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "MerchantHostedEcom_Visa_AuthorizePayment",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "3e1e4637-3bdc-4821-97fd-e0892b777db0"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "2bd495e5-d1a3-48c0-a5f4-d41e7b4fe2f3"
+															}
+														}
+													],
+													"id": "da3ac93e-3354-4be5-ae95-480cf367c28f",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"AuthorizationTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/authorize",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"authorize"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "MerchantHostedEcom_Visa_CapturePayment",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "772fc78a-da7a-4e4e-af08-9b52960f0f2b"
+															}
+														},
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "3d296f48-2eb1-44cb-9b03-6b0e5e1a0478"
+															}
+														}
+													],
+													"id": "86574fd5-6f3c-413e-972f-319fa76a1dce",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"CaptureTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/capture",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"capture"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "MerchantHostedEcom_Visa_RefundPayment Copy",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "e111b5b6-fe06-4d59-aff7-8d273f4a9072"
+															}
+														}
+													],
+													"id": "80549435-c929-485a-8d68-fe1ef21c294e",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"RefundTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/refund",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"refund"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"id": "25e0b7b3-e945-4132-96f6-4a9b4562299f",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"console.log('MerchantHostedEcom START');"
+														],
+														"id": "aa908ff9-cb2a-4855-9869-40d929cda52e"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"console.log('MerchantHostedEcom END');"
+														],
+														"id": "82985aa6-d1dc-4594-bc15-52f27b96331e"
+													}
+												}
+											]
+										}
+									],
+									"id": "1cb6181b-d0ed-40fe-aac1-c4891ca94ea7"
+								},
+								{
+									"name": "NetsHostedEcom",
+									"item": [
+										{
+											"name": "NetsHostedEcom_Visa_Refund",
+											"item": [
+												{
+													"name": "NetsHostedEcom_Visa_RegisterPayment",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	"var responseOrderNumber = pm.environment.get(\"Reponse-Order-Number\")\r",
+																	"responseOrderNumber = parseInt(responseOrderNumber) + 1\r",
+																	"pm.environment.set(\"Reponse-Order-Number\", responseOrderNumber)"
+																],
+																"type": "text/javascript",
+																"id": "50dab04a-2193-4be8-bca3-f888f62b8c6e"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let index = pm.environment.get('Test-Step-Index-String');  \r",
+																	"\r",
+																	"var jsonData = pm.response.json();\r",
+																	"\r",
+																	"pm.test(index+\" PaymentId: \" + jsonData.paymentId, function () {\r",
+																	"    pm.expect('paymentId' in jsonData).to.eql(true);\r",
+																	"    if(jsonData.paymentId){\r",
+																	"        pm.environment.set('Reponse-Payment-Id', jsonData.paymentId);\r",
+																	"    }\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" paypageURL: \" + jsonData.paypageURL, function () {\r",
+																	"    pm.expect('paypageURL' in jsonData).to.eql(true);\r",
+																	"    if(jsonData.paypageURL){\r",
+																	"        pm.environment.set('Reponse-paypage-URL', jsonData.paypageURL);\r",
+																	"    }\r",
+																	"});"
+																],
+																"type": "text/javascript",
+																"id": "393e808a-ee7e-45c7-aee3-f9f339689f55"
+															}
+														}
+													],
+													"id": "0c30ded5-cc74-4228-995f-f2bdf1ea46ee",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"type\": \"NetsHostedEcom\",\r\n    \"paymentNumber\": \"POSTMAN-TEST-{{Reponse-Order-Number}}\",\r\n    \"checkoutText\": \"TestOrderFromPostMan\",\r\n    \"reconciliationReference\": \"ref1\",\r\n    \"amount\": 100,\r\n    \"currencyCode\": \"{{Currency}}\",\r\n    \"redirectUrls\": {\r\n        \"returnUrl\": \"https://nets.eu\"\r\n    }\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}",
+															"host": [
+																"{{PaymentServiceURL}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "NetsHostedEcom_Visa_CheckOut_Open",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let orderNumber = pm.environment.get('Reponse-Order-Number');\r",
+																	"let index = pm.environment.get('Test-Step-Index-String');  \r",
+																	"\r",
+																	"pm.test(index+\" Correct orrder :\" + orderNumber, function () {\r",
+																	"    var idx = pm.response.text().indexOf(orderNumber)\r",
+																	"    pm.expect(idx).to.be.above(-1);\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" Has No Errors\", function () {    \r",
+																	"    var idx = pm.response.text().indexOf('Error')\r",
+																	"    pm.expect(idx).to.be.eql(-1);\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" Has No 'Transaksjonen er allerede behandlet'\", function () {    \r",
+																	"    var idx = pm.response.text().indexOf('Transaksjonen er allerede behandlet')\r",
+																	"    pm.expect(idx).to.be.eql(-1);\r",
+																	"});\r",
+																	"\r",
+																	"const $ = cheerio.load(responseBody);\r",
+																	"const ViewstateToken = ($(\"input[name='__VIEWSTATE']\").val())\r",
+																	"pm.environment.set(\"Nets-Hosted-Payment-VIEWSTATE-token\", ViewstateToken);\r",
+																	"\r",
+																	"const ViewstateGeneratorToken = ($(\"input[name='__VIEWSTATEGENERATOR']\").val())\r",
+																	"pm.environment.set(\"Nets-Hosted-Payment-VIEWSTATEGENERATOR-token\", ViewstateGeneratorToken);\r",
+																	"\r",
+																	"const ViewstateValidationToken = ($(\"input[name='__EVENTVALIDATION']\").val())\r",
+																	"pm.environment.set(\"Nets-Hosted-Payment-EVENTVALIDATION-token\", ViewstateValidationToken);\r",
+																	"\r",
+																	"const MerchandAcqID = ($(\"input[name='merchantInformation$hdnMerchandAcqID']\").val())\r",
+																	"pm.environment.set(\"Nets-Hosted-Payment-MerchandAcqID\", MerchandAcqID);"
+																],
+																"type": "text/javascript",
+																"id": "6652a846-b234-496b-a8c6-1cec512008a0"
+															}
+														},
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "018454fc-4e8c-4d70-a0c9-0eb417484c47"
+															}
+														}
+													],
+													"id": "eca7056e-3bf7-4abb-9bc6-f3c3001234b7",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "noauth"
+														},
+														"method": "GET",
+														"header": [],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": []
+														},
+														"url": {
+															"raw": "{{Reponse-paypage-URL}}",
+															"host": [
+																"{{Reponse-paypage-URL}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "NetsHostedEcom_Visa_CheckOut_Next",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"const $ = cheerio.load(pm.response.text());\r",
+																	"let index = pm.environment.get('Test-Step-Index-String'); \r",
+																	"let orderNumber = pm.environment.get('Reponse-Order-Number'); \r",
+																	"\r",
+																	"let script = $('script').each(function(){\r",
+																	"    let scriptBody = $(this).text();\r",
+																	"    \r",
+																	"    if(scriptBody.indexOf('easyPaymentEpaySessionId = \\'') > -1){\r",
+																	"        var idx = scriptBody.indexOf('easyPaymentEpaySessionId = \\'');\r",
+																	"        let easyPaymentEpaySessionId = scriptBody.substr(idx + 28,  32);\r",
+																	"        console.log('easyPaymentEpaySessionId: ' + easyPaymentEpaySessionId);\r",
+																	"        pm.environment.set('EasyPaymentEpaySessionId', easyPaymentEpaySessionId);\r",
+																	"    }\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" Correct orrder :\" + orderNumber, function () {\r",
+																	"    var idx = pm.response.text().indexOf(orderNumber)\r",
+																	"    pm.expect(idx).to.be.above(-1);\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" Has No Errors\", function () {    \r",
+																	"    var idx = pm.response.text().indexOf('Error')\r",
+																	"    pm.expect(idx).to.be.eql(-1);\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" Has No 'Transaksjonen er allerede behandlet'\", function () {    \r",
+																	"    var idx = pm.response.text().indexOf('Transaksjonen er allerede behandlet')\r",
+																	"    pm.expect(idx).to.be.eql(-1);\r",
+																	"});\r",
+																	"\r",
+																	"\r",
+																	"const htmlBody = cheerio.load(responseBody);\r",
+																	"const ViewstateToken = (htmlBody(\"input[name='__VIEWSTATE']\").val())\r",
+																	"pm.environment.set(\"Nets-Hosted-Payment-VIEWSTATE-token\", ViewstateToken);\r",
+																	"\r",
+																	"const ViewstateGeneratorToken = (htmlBody(\"input[name='__VIEWSTATEGENERATOR']\").val())\r",
+																	"pm.environment.set(\"Nets-Hosted-Payment-VIEWSTATEGENERATOR-token\", ViewstateGeneratorToken);\r",
+																	"\r",
+																	"const ViewstateValidationToken = (htmlBody(\"input[name='__EVENTVALIDATION']\").val())\r",
+																	"pm.environment.set(\"Nets-Hosted-Payment-EVENTVALIDATION-token\", ViewstateValidationToken);\r",
+																	"\r",
+																	"const MerchandAcqID = (htmlBody(\"input[name='merchantInformation$hdnMerchandAcqID']\").val())\r",
+																	"pm.environment.set(\"Nets-Hosted-Payment-MerchandAcqID\", MerchandAcqID);"
+																],
+																"type": "text/javascript",
+																"id": "8f2a0fd2-3c7d-4b39-b252-54853f0eef99"
+															}
+														}
+													],
+													"id": "d7cec938-9dfa-4fd2-889b-4aff8320754b",
+													"protocolProfileBehavior": {
+														"followRedirects": false,
+														"disableBodyPruning": true
+													},
+													"request": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "__EVENTTARGET",
+																	"value": "nextButton",
+																	"type": "text"
+																},
+																{
+																	"key": "__EVENTARGUMENT",
+																	"value": "",
+																	"type": "text"
+																},
+																{
+																	"key": "__VIEWSTATE",
+																	"value": "{{Nets-Hosted-Payment-VIEWSTATE-token}}",
+																	"type": "text"
+																},
+																{
+																	"key": "__VIEWSTATEGENERATOR",
+																	"value": "{{Nets-Hosted-Payment-VIEWSTATEGENERATOR-token}}",
+																	"type": "text"
+																},
+																{
+																	"key": "__VIEWSTATEENCRYPTED",
+																	"value": "",
+																	"type": "text"
+																},
+																{
+																	"key": "__EVENTVALIDATION",
+																	"value": "{{Nets-Hosted-Payment-EVENTVALIDATION-token}}",
+																	"type": "text"
+																},
+																{
+																	"key": "merchantInformation$hdnMerchandAcqID",
+																	"value": "{{Nets-Hosted-Payment-MerchandAcqID}}",
+																	"type": "text"
+																},
+																{
+																	"key": "issuerlist",
+																	"value": "Visa",
+																	"type": "text"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{Reponse-paypage-URL}}",
+															"host": [
+																"{{Reponse-paypage-URL}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "NetsHostedEcom_Visa_CheckOut_GetIssuerDetails",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let index = pm.environment.get('Test-Step-Index-String'); \r",
+																	"\r",
+																	"pm.test(index+\" paymentId exists\", function () {\r",
+																	"    var jsonData = pm.response.json();\r",
+																	"    pm.expect('d' in jsonData).to.eql(true);\r",
+																	"    if(jsonData.d){\r",
+																	"        var data = JSON.parse(jsonData.d);\r",
+																	"        pm.environment.set('Reponse-Issuer-Id', data.IssuerId);\r",
+																	"    }\r",
+																	"});"
+																],
+																"type": "text/javascript",
+																"id": "ff78fafa-2d00-4487-8dd3-c5f1dfb2c562"
+															}
+														}
+													],
+													"id": "7a29f2d5-797a-43a9-a46f-50dd9ca71c57",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"cardNumber\":\"{{Visa(Debit)}}\",\r\n    \"epaySessionId\":\"{{EasyPaymentEpaySessionId}}\"\r\n}"
+														},
+														"url": {
+															"raw": "https://test.epayment.nets.eu/terminal/Webservices/Terminal.asmx/GetIssuerDetails",
+															"protocol": "https",
+															"host": [
+																"test",
+																"epayment",
+																"nets",
+																"eu"
+															],
+															"path": [
+																"terminal",
+																"Webservices",
+																"Terminal.asmx",
+																"GetIssuerDetails"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "NetsHostedEcom_Visa_CheckOut_Ok",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"let index = pm.environment.get('Test-Step-Index-String'); \r",
+																	"\r",
+																	"const httpLink = pm.response.headers.get(\"Location\")\r",
+																	"pm.environment.set(\"Nets-Hosted-Ecom-ChectOut-url\", httpLink);\r",
+																	"\r",
+																	"pm.test(index+\" Status code is 302\", function () {\r",
+																	"    pm.response.to.have.status(302);\r",
+																	"});\r",
+																	"\r",
+																	"pm.test(index+\" Has No Errors\", function () {    \r",
+																	"    var idx = pm.response.text().indexOf('Error')\r",
+																	"    pm.expect(idx).to.be.eql(-1);\r",
+																	"});"
+																],
+																"type": "text/javascript",
+																"id": "abde0a09-3cba-433f-8224-b51d7753066e"
+															}
+														}
+													],
+													"id": "602d8e69-2d49-4f63-a20c-bd58c01063f4",
+													"protocolProfileBehavior": {
+														"followRedirects": false,
+														"disableBodyPruning": true
+													},
+													"request": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "__VIEWSTATE",
+																	"value": "{{Nets-Hosted-Payment-VIEWSTATE-token}}",
+																	"type": "text"
+																},
+																{
+																	"key": "__VIEWSTATEGENERATOR",
+																	"value": "{{Nets-Hosted-Payment-VIEWSTATEGENERATOR-token}}",
+																	"type": "text"
+																},
+																{
+																	"key": "__VIEWSTATEENCRYPTED",
+																	"value": "",
+																	"type": "text"
+																},
+																{
+																	"key": "__EVENTVALIDATION",
+																	"value": "{{Nets-Hosted-Payment-EVENTVALIDATION-token}}",
+																	"type": "text"
+																},
+																{
+																	"key": "merchantInformation$hdnMerchandAcqID",
+																	"value": "{{Nets-Hosted-Payment-MerchandAcqID}}",
+																	"type": "text"
+																},
+																{
+																	"key": "Visa$cardNumber",
+																	"value": "{{Visa(Debit)}}",
+																	"type": "text"
+																},
+																{
+																	"key": "Visa$month",
+																	"value": "{{Visa(Month)}}",
+																	"type": "text"
+																},
+																{
+																	"key": "Visa$year",
+																	"value": "{{Visa(Year)}}",
+																	"type": "text"
+																},
+																{
+																	"key": "Visa$securityCode",
+																	"value": "{{Visa(SecurityCode)}}",
+																	"type": "text"
+																},
+																{
+																	"key": "okButton",
+																	"value": "Betal",
+																	"type": "text"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{Reponse-paypage-URL}}",
+															"host": [
+																"{{Reponse-paypage-URL}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "NetsHostedEcom_Visa_AuthorizePayment",
+													"event": [
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	"let paymentId = pm.globals.get('Reponse-Payment-Id');\r",
+																	"pm.request.headers.add({key:'paymentId', value: paymentId});"
+																],
+																"type": "text/javascript",
+																"id": "925962b4-3473-4412-b39e-7f0ed1d25eb5"
+															}
+														},
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "019a81f0-eed1-4ee6-afe8-52ab9bb35bef"
+															}
+														}
+													],
+													"id": "aa2bb614-e415-4b6c-b54e-54ba268e8be3",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"AuthorizationTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/authorize",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"authorize"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "NetsHostedEcom_Visa_CapturePayment",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "e3b82248-731f-43ce-844e-fe05cf5ebdd6"
+															}
+														},
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "b0e1501f-bc8e-4e50-9c69-a431b8dc3696"
+															}
+														}
+													],
+													"id": "d3589718-ecd0-4229-8c50-d0eca95be78c",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"CaptureTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/capture",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"capture"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "NetsHostedEcom_Visa_RefundPayment",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	""
+																],
+																"type": "text/javascript",
+																"id": "04e28717-81db-426e-bf89-ac83d071c5d5"
+															}
+														}
+													],
+													"id": "f9ecab5a-2a91-4efb-9105-d861cae44e0d",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{OAuto-2.0-Token}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"amount\": 100,\r\n    \"description\":\"RefundTestDescription\"\r\n}"
+														},
+														"url": {
+															"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/refund",
+															"host": [
+																"{{PaymentServiceURL}}"
+															],
+															"path": [
+																"{{Reponse-Payment-Id}}",
+																"refund"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"id": "a0feca70-a2e9-4420-850b-81d9637f64c3",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"console.log('NetsHostedEcom START');"
+														],
+														"id": "b4f246d5-ed9f-4322-ad9a-531401cc6382"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"type": "text/javascript",
+														"exec": [
+															"console.log('NetsHostedEcom END');"
+														],
+														"id": "cf3e0ff7-22f7-4560-8e5d-5c7e5f2729f2"
+													}
+												}
+											]
+										}
+									],
+									"id": "cebc5d69-8e47-4c79-a318-af35e0b300b1"
+								},
+								{
+									"name": "Reccuring",
+									"item": [
+										{
+											"name": "Visa_GenerateTokenAndPayWithIt",
+											"item": [
+												{
+													"name": "GenetareTokenUsing/reccuringEndpoint",
+													"item": [
+														{
+															"name": "Subscription",
+															"item": [
+																{
+																	"name": "Moto_Visa_ReccuringPaymentSubscription",
+																	"item": [
+																		{
+																			"name": "Moto_Visa_GenerateTokenizationIdForSingleCharges",
+																			"event": [
+																				{
+																					"listen": "prerequest",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "503a6a96-6edc-411b-affb-458656b98c39"
+																					}
+																				},
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							"let index = pm.environment.get('Test-Step-Index-String'); \r",
+																							" \r",
+																							"var jsonData = pm.response.json();\r",
+																							"pm.environment.set('Tokenization-Id',jsonData.tokenizationId);\r",
+																							"\r",
+																							"pm.test(index+\" Tokenization-Id: \" + jsonData.tokenizationId, function () {\r",
+																							"    pm.expect('tokenizationId' in jsonData).to.eql(true);\r",
+																							"});"
+																						],
+																						"type": "text/javascript",
+																						"id": "529db69f-9921-4e93-b2e3-77b09210dbc5"
+																					}
+																				}
+																			],
+																			"id": "3382b5c6-b9fa-4c44-9e05-148cf3af2a7c",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"auth": {
+																					"type": "bearer",
+																					"bearer": [
+																						{
+																							"key": "token",
+																							"value": "{{OAuto-2.0-Token-TokenizationService}}",
+																							"type": "string"
+																						}
+																					]
+																				},
+																				"method": "POST",
+																				"header": [
+																					{
+																						"key": "Content-Type",
+																						"value": "application/json",
+																						"type": "text"
+																					}
+																				],
+																				"body": {
+																					"mode": "raw",
+																					"raw": "{\r\n    \"paymentNumber\": \"POSTMAN-TEST-{{Reponse-Order-Number}}\",\r\n    \"checkoutText\": \"recurring\",\r\n    \"currencyCode\": \"{{Currency}}\",\r\n    \"recurringExpiryDate\": \"2023-04-01\",\r\n    \"returnUrl\": \"https://nets.eu\",\r\n    \"recurringFrequency\": 0,\r\n    \"recurringType\": \"Subscription\",\r\n    \"amount\": 10\r\n}\r\n"
+																				},
+																				"url": {
+																					"raw": "{{TokenizationServiceURL}}/recurring",
+																					"host": [
+																						"{{TokenizationServiceURL}}"
+																					],
+																					"path": [
+																						"recurring"
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_Visa_EnterCardInfoOnNetsSide",
+																			"event": [
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							"let index = pm.environment.get('Test-Step-Index-String'); \r",
+																							"const $ = cheerio.load(pm.response.text())\r",
+																							"\r",
+																							"pm.test(index+\" Has No Internal error\", function () {    \r",
+																							"    var idx = pm.response.text().indexOf('Internal error')\r",
+																							"    pm.expect(idx).to.be.eql(-1);\r",
+																							"});\r",
+																							"\r",
+																							"pm.test(index+\" Has No 'Transaksjonen er allerede behandlet'\", function () {    \r",
+																							"    var idx = pm.response.text().indexOf('Transaksjonen er allerede behandlet')\r",
+																							"    pm.expect(idx).to.be.eql(-1);\r",
+																							"});\r",
+																							"\r",
+																							"let viewstate = $(\"#__VIEWSTATE\");\r",
+																							"pm.environment.set('VIEWSTATE',viewstate[0].attribs.value)\r",
+																							"\r",
+																							"let eventValidator = $(\"#__EVENTVALIDATION\");\r",
+																							"pm.environment.set('EVENTVALIDATION',eventValidator[0].attribs.value)\r",
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "1a33fb2b-634a-4ded-bcbb-974e6e5a7cf0"
+																					}
+																				}
+																			],
+																			"id": "bc039481-27a3-4270-b194-47518b557620",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"method": "GET",
+																				"header": [],
+																				"url": {
+																					"raw": "https://test.epayment.nets.eu/terminal/default.aspx?merchantId={{Merchant-Id}}&transactionId={{Tokenization-Id}}",
+																					"protocol": "https",
+																					"host": [
+																						"test",
+																						"epayment",
+																						"nets",
+																						"eu"
+																					],
+																					"path": [
+																						"terminal",
+																						"default.aspx"
+																					],
+																					"query": [
+																						{
+																							"key": "merchantId",
+																							"value": "{{Merchant-Id}}"
+																						},
+																						{
+																							"key": "transactionId",
+																							"value": "{{Tokenization-Id}}"
+																						}
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_Visa_RegisterCardData",
+																			"event": [
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							"let index = pm.environment.get('Test-Step-Index-String'); \r",
+																							"pm.environment.set('Redirected-Page-Url', pm.response.headers.get('Location'));\r",
+																							"\r",
+																							"pm.test(index+\" Has No Error\", function () {    \r",
+																							"    var idx = pm.response.text().indexOf('Error')\r",
+																							"    pm.expect(idx).to.be.eql(-1);\r",
+																							"});\r",
+																							"\r",
+																							"pm.test(index + \"Status code is 302\", function () {\r",
+																							"   pm.response.to.have.status(302);\r",
+																							"});\r",
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "1f1e2d06-c982-4e82-bd0a-4b0e635ea2b8"
+																					}
+																				}
+																			],
+																			"id": "5719166b-2e54-441f-b31d-6286b86bd470",
+																			"protocolProfileBehavior": {
+																				"followRedirects": false,
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"method": "POST",
+																				"header": [],
+																				"body": {
+																					"mode": "urlencoded",
+																					"urlencoded": [
+																						{
+																							"key": "__VIEWSTATE",
+																							"value": "{{VIEWSTATE}}",
+																							"type": "text"
+																						},
+																						{
+																							"key": "__VIEWSTATEGENERATOR",
+																							"value": "825529CB",
+																							"type": "text"
+																						},
+																						{
+																							"key": "__VIEWSTATEENCRYPTED",
+																							"value": "",
+																							"type": "text"
+																						},
+																						{
+																							"key": "__EVENTVALIDATION",
+																							"value": "{{EVENTVALIDATION}}",
+																							"type": "text"
+																						},
+																						{
+																							"key": "merchantInformation$hdnMerchandAcqID",
+																							"value": "578200",
+																							"type": "text"
+																						},
+																						{
+																							"key": "EasyPayment$cardNumber",
+																							"value": "{{Visa(Debit)}}",
+																							"type": "text"
+																						},
+																						{
+																							"key": "EasyPayment$month",
+																							"value": "11",
+																							"type": "text"
+																						},
+																						{
+																							"key": "EasyPayment$year",
+																							"value": "25",
+																							"type": "text"
+																						},
+																						{
+																							"key": "EasyPayment$securityCode",
+																							"value": "123",
+																							"type": "text"
+																						},
+																						{
+																							"key": "EasyPayment$validationRequired",
+																							"value": "False",
+																							"type": "text"
+																						},
+																						{
+																							"key": "okButton",
+																							"value": "Registrer",
+																							"type": "text"
+																						}
+																					]
+																				},
+																				"url": {
+																					"raw": "https://test.epayment.nets.eu/terminal/default.aspx?merchantId={{Merchant-Id}}&transactionId={{Tokenization-Id}}",
+																					"protocol": "https",
+																					"host": [
+																						"test",
+																						"epayment",
+																						"nets",
+																						"eu"
+																					],
+																					"path": [
+																						"terminal",
+																						"default.aspx"
+																					],
+																					"query": [
+																						{
+																							"key": "merchantId",
+																							"value": "{{Merchant-Id}}"
+																						},
+																						{
+																							"key": "transactionId",
+																							"value": "{{Tokenization-Id}}"
+																						}
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_Visa_VisitResponseUrl",
+																			"id": "2214fb4f-3339-4337-a747-7498ba9c9576",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"method": "GET",
+																				"header": [],
+																				"url": {
+																					"raw": "{{Redirected-Page-Url}}",
+																					"host": [
+																						"{{Redirected-Page-Url}}"
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_Visa_VerifyPaymentData",
+																			"id": "fff8c790-0a2a-4454-a085-d2a534e58c7f",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"auth": {
+																					"type": "bearer",
+																					"bearer": [
+																						{
+																							"key": "token",
+																							"value": "{{OAuto-2.0-Token-TokenizationService}}",
+																							"type": "string"
+																						}
+																					]
+																				},
+																				"method": "POST",
+																				"header": [
+																					{
+																						"key": "Content-Type",
+																						"value": "application/json",
+																						"type": "text"
+																					}
+																				],
+																				"body": {
+																					"mode": "raw",
+																					"raw": "{\r\n    \"description\":\"VerificationTestDescription\"\r\n}"
+																				},
+																				"url": {
+																					"raw": "{{TokenizationServiceURL}}/{{Tokenization-Id}}/verify",
+																					"host": [
+																						"{{TokenizationServiceURL}}"
+																					],
+																					"path": [
+																						"{{Tokenization-Id}}",
+																						"verify"
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_GetToken",
+																			"event": [
+																				{
+																					"listen": "prerequest",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "cc74d81f-c506-4188-9922-634260b3e55e"
+																					}
+																				},
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							"let index = pm.environment.get('Test-Step-Index-String'); \r",
+																							"var jsonData = pm.response.json();\r",
+																							"var paymentToken = jsonData.token;\r",
+																							"\r",
+																							"pm.environment.set('Recurring-Payment-Token', paymentToken);\r",
+																							"\r",
+																							"pm.test(index+\" Recurring-Payment-Token: \" + paymentToken, function () {\r",
+																							"    pm.expect('token' in jsonData).to.eql(true);\r",
+																							"});"
+																						],
+																						"type": "text/javascript",
+																						"id": "3e37c441-f84e-4dcf-b071-81cdc4725b3c"
+																					}
+																				}
+																			],
+																			"id": "917b1030-51be-4631-91af-cf8363b4c264",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"auth": {
+																					"type": "bearer",
+																					"bearer": [
+																						{
+																							"key": "token",
+																							"value": "{{OAuto-2.0-Token-TokenizationService}}",
+																							"type": "string"
+																						}
+																					]
+																				},
+																				"method": "GET",
+																				"header": [
+																					{
+																						"key": "Content-Type",
+																						"value": "application/json",
+																						"type": "text"
+																					}
+																				],
+																				"body": {
+																					"mode": "raw",
+																					"raw": "",
+																					"options": {
+																						"raw": {
+																							"language": "json"
+																						}
+																					}
+																				},
+																				"url": {
+																					"raw": "{{TokenizationServiceURL}}{{Tokenization-Id}}",
+																					"host": [
+																						"{{TokenizationServiceURL}}{{Tokenization-Id}}"
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_Visa_RegisterForPaymentWithToken",
+																			"event": [
+																				{
+																					"listen": "prerequest",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "a0c413ba-882f-4fff-b31b-5137335fba6b"
+																					}
+																				},
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							"let index = pm.environment.get('Test-Step-Index-String');\r",
+																							"var jsonData = pm.response.json();\r",
+																							"\r",
+																							"pm.test(index + \" PaymentId: \" + jsonData.paymentId, function () {\r",
+																							"    pm.expect('paymentId' in jsonData).to.eql(true);\r",
+																							"    if(jsonData.paymentId){\r",
+																							"        pm.environment.set('Reponse-Payment-Id', jsonData.paymentId);\r",
+																							"    }\r",
+																							"});\r",
+																							"\r",
+																							"pm.test(index+\" paypageURL: \" + jsonData.paypageURL, function () {\r",
+																							"    pm.expect('paypageURL' in jsonData).to.eql(true);\r",
+																							"    if(jsonData.paypageURL){\r",
+																							"        pm.environment.set('Reponse-paypage-URL', jsonData.paypageURL);\r",
+																							"    }\r",
+																							"});\r",
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "8c050e37-a070-4968-848b-f230c79cd890"
+																					}
+																				}
+																			],
+																			"id": "de660305-aedd-41d1-9ceb-1e5c4d2e4314",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"auth": {
+																					"type": "bearer",
+																					"bearer": [
+																						{
+																							"key": "token",
+																							"value": "{{OAuto-2.0-Token}}",
+																							"type": "string"
+																						}
+																					]
+																				},
+																				"method": "POST",
+																				"header": [
+																					{
+																						"key": "Content-Type",
+																						"value": "application/json",
+																						"type": "text"
+																					}
+																				],
+																				"body": {
+																					"mode": "raw",
+																					"raw": "{\r\n    \"type\": \"Moto\",\r\n    \"paymentNumber\": \"POSTMAN-TEST-{{Reponse-Order-Number}}\",\r\n    \"checkoutText\": \"TestOrderFromPostMan\",\r\n    \"reconciliationReference\": \"ref1\",\r\n    \"amount\": 1000,\r\n    \"currencyCode\": \"{{Currency}}\",\r\n    \"paymentMethodDetails\": {\r\n        \"type\": \"PaymentWithToken\",\r\n        \"token\": \"{{Recurring-Payment-Token}}\", \r\n        \"IsRecurring\": true,\r\n        \"RecurringType\": \"Subscription\"\r\n    },\r\n    \"RedirectUrls\": {\r\n    \"ReturnUrl\": \"http://nets.eu\"\r\n    }\r\n}"
+																				},
+																				"url": {
+																					"raw": "{{PaymentServiceURL}}",
+																					"host": [
+																						"{{PaymentServiceURL}}"
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_Visa_AuthorizePayment",
+																			"event": [
+																				{
+																					"listen": "prerequest",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "6a125e0b-90cd-4db6-8a80-5ebd3e1cb2f2"
+																					}
+																				},
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "2fcbd72e-de81-40eb-a16e-59242598d034"
+																					}
+																				}
+																			],
+																			"id": "7db9702a-aa9b-46d9-987f-9eb6c94ac1ab",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"auth": {
+																					"type": "bearer",
+																					"bearer": [
+																						{
+																							"key": "token",
+																							"value": "{{OAuto-2.0-Token}}",
+																							"type": "string"
+																						}
+																					]
+																				},
+																				"method": "POST",
+																				"header": [
+																					{
+																						"key": "Content-Type",
+																						"value": "application/json",
+																						"type": "text"
+																					}
+																				],
+																				"body": {
+																					"mode": "raw",
+																					"raw": "{\r\n    \"amount\": 1000,\r\n    \"description\":\"AuthorizationTestDescription\"\r\n}"
+																				},
+																				"url": {
+																					"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/authorize",
+																					"host": [
+																						"{{PaymentServiceURL}}"
+																					],
+																					"path": [
+																						"{{Reponse-Payment-Id}}",
+																						"authorize"
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_Visa_CapturePayment",
+																			"event": [
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "843d058c-4572-4781-b4cd-ac1fd57225d6"
+																					}
+																				},
+																				{
+																					"listen": "prerequest",
+																					"script": {
+																						"exec": [
+																							"var responseOrderNumber = pm.environment.get(\"Reponse-Order-Number\")\r",
+																							"responseOrderNumber = parseInt(responseOrderNumber) + 1\r",
+																							"pm.environment.set(\"Reponse-Order-Number\", responseOrderNumber)"
+																						],
+																						"type": "text/javascript",
+																						"id": "46bd0ae4-efbc-495e-85b8-2c24350d15f6"
+																					}
+																				}
+																			],
+																			"id": "aa2156dc-6bbf-45a0-a71f-5d3f1e2c9602",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"auth": {
+																					"type": "bearer",
+																					"bearer": [
+																						{
+																							"key": "token",
+																							"value": "{{OAuto-2.0-Token}}",
+																							"type": "string"
+																						}
+																					]
+																				},
+																				"method": "POST",
+																				"header": [
+																					{
+																						"key": "Content-Type",
+																						"value": "application/json",
+																						"type": "text"
+																					}
+																				],
+																				"body": {
+																					"mode": "raw",
+																					"raw": "{\r\n    \"amount\": 1000,\r\n    \"description\":\"CaptureTestDescription\"\r\n}"
+																				},
+																				"url": {
+																					"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/capture",
+																					"host": [
+																						"{{PaymentServiceURL}}"
+																					],
+																					"path": [
+																						"{{Reponse-Payment-Id}}",
+																						"capture"
+																					]
+																				}
+																			},
+																			"response": []
+																		}
+																	],
+																	"id": "7ce9c5b0-4444-49fc-9fbe-8d2bf926360d"
+																},
+																{
+																	"name": "MotoTryToChargeAfterIntervalPassed",
+																	"item": [
+																		{
+																			"name": "Moto_Visa_RegisterForPaymentWithTokenAfterIntervalPassed",
+																			"event": [
+																				{
+																					"listen": "prerequest",
+																					"script": {
+																						"exec": [
+																							"var responseOrderNumber = pm.environment.get(\"Reponse-Order-Number\")\r",
+																							"responseOrderNumber = parseInt(responseOrderNumber) + 1\r",
+																							"pm.environment.set(\"Reponse-Order-Number\", responseOrderNumber)"
+																						],
+																						"type": "text/javascript",
+																						"id": "1eb99d93-abae-45ea-9315-3cc4f13d57cb"
+																					}
+																				},
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							"let index = pm.environment.get('Test-Step-Index-String');\r",
+																							"var jsonData = pm.response.json();\r",
+																							"\r",
+																							"pm.test(index + \" PaymentId: \" + jsonData.paymentId, function () {\r",
+																							"    pm.expect('paymentId' in jsonData).to.eql(true);\r",
+																							"    if(jsonData.paymentId){\r",
+																							"        pm.environment.set('Reponse-Payment-Id', jsonData.paymentId);\r",
+																							"    }\r",
+																							"});\r",
+																							"\r",
+																							"\r",
+																							"pm.test(index+\" paypageURL: \" + jsonData.paypageURL, function () {\r",
+																							"    pm.expect('paypageURL' in jsonData).to.eql(true);\r",
+																							"    if(jsonData.paypageURL){\r",
+																							"        pm.environment.set('Reponse-paypage-URL', jsonData.paypageURL);\r",
+																							"    }\r",
+																							"});\r",
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "be928f78-9846-479a-9d14-f72e6e5440e4"
+																					}
+																				}
+																			],
+																			"id": "ed22cc47-d240-4765-8f92-29d65778a191",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"auth": {
+																					"type": "bearer",
+																					"bearer": [
+																						{
+																							"key": "token",
+																							"value": "{{OAuto-2.0-Token}}",
+																							"type": "string"
+																						}
+																					]
+																				},
+																				"method": "POST",
+																				"header": [
+																					{
+																						"key": "Content-Type",
+																						"value": "application/json",
+																						"type": "text"
+																					}
+																				],
+																				"body": {
+																					"mode": "raw",
+																					"raw": "{\r\n    \"type\": \"Moto\",\r\n    \"paymentNumber\": \"POSTMAN-TEST-{{Reponse-Order-Number}}\",\r\n    \"checkoutText\": \"TestOrderFromPostMan\",\r\n    \"reconciliationReference\": \"ref1\",\r\n    \"amount\": 1000,\r\n    \"currencyCode\": \"{{Currency}}\",\r\n    \"paymentMethodDetails\": {\r\n        \"type\": \"PaymentWithToken\",\r\n        \"token\": \"{{Recurring-Payment-Token}}\", \r\n        \"IsRecurring\": true,\r\n        \"RecurringType\": \"Subscription\"\r\n    },\r\n    \"RedirectUrls\": {\r\n    \"ReturnUrl\": \"http://nets.eu\"\r\n    }\r\n}"
+																				},
+																				"url": {
+																					"raw": "{{PaymentServiceURL}}",
+																					"host": [
+																						"{{PaymentServiceURL}}"
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_Visa_AuthorizePayment",
+																			"event": [
+																				{
+																					"listen": "prerequest",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "addf6995-4673-4e67-b50d-e8379c7a4251"
+																					}
+																				},
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "e328a5a5-6c61-4f5b-8bdc-92eff786b709"
+																					}
+																				}
+																			],
+																			"id": "cd5c9208-2b29-4b90-b088-e4adf8e612f7",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"auth": {
+																					"type": "bearer",
+																					"bearer": [
+																						{
+																							"key": "token",
+																							"value": "{{OAuto-2.0-Token}}",
+																							"type": "string"
+																						}
+																					]
+																				},
+																				"method": "POST",
+																				"header": [
+																					{
+																						"key": "Content-Type",
+																						"value": "application/json",
+																						"type": "text"
+																					}
+																				],
+																				"body": {
+																					"mode": "raw",
+																					"raw": "{\r\n    \"amount\": 1000,\r\n    \"description\":\"AuthorizationTestDescription\"\r\n}"
+																				},
+																				"url": {
+																					"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/authorize",
+																					"host": [
+																						"{{PaymentServiceURL}}"
+																					],
+																					"path": [
+																						"{{Reponse-Payment-Id}}",
+																						"authorize"
+																					]
+																				}
+																			},
+																			"response": []
+																		},
+																		{
+																			"name": "Moto_Visa_CapturePayment",
+																			"event": [
+																				{
+																					"listen": "test",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "2640c3e2-b463-45db-9a9a-21de8dfd4a24"
+																					}
+																				},
+																				{
+																					"listen": "prerequest",
+																					"script": {
+																						"exec": [
+																							""
+																						],
+																						"type": "text/javascript",
+																						"id": "f4273398-4ef3-49b3-85f1-a205bf37b9c8"
+																					}
+																				}
+																			],
+																			"id": "0cc84ff6-5701-4c06-9a4d-43fd67247016",
+																			"protocolProfileBehavior": {
+																				"disableBodyPruning": true
+																			},
+																			"request": {
+																				"auth": {
+																					"type": "bearer",
+																					"bearer": [
+																						{
+																							"key": "token",
+																							"value": "{{OAuto-2.0-Token}}",
+																							"type": "string"
+																						}
+																					]
+																				},
+																				"method": "POST",
+																				"header": [
+																					{
+																						"key": "Content-Type",
+																						"value": "application/json",
+																						"type": "text"
+																					}
+																				],
+																				"body": {
+																					"mode": "raw",
+																					"raw": "{\r\n    \"amount\": 1000,\r\n    \"description\":\"CaptureTestDescription\"\r\n}"
+																				},
+																				"url": {
+																					"raw": "{{PaymentServiceURL}}/{{Reponse-Payment-Id}}/capture",
+																					"host": [
+																						"{{PaymentServiceURL}}"
+																					],
+																					"path": [
+																						"{{Reponse-Payment-Id}}",
+																						"capture"
+																					]
+																				}
+																			},
+																			"response": []
+																		}
+																	],
+																	"id": "9d2c29ee-4e49-4ac8-b15f-db9ed19e2402"
+																}
+															],
+															"id": "970dae29-fce7-424b-87c9-ba94404adaa9"
+														}
+													],
+													"id": "77c5e713-da62-402c-8d96-df09746d7014"
+												}
+											],
+											"id": "7a998306-16d4-4f8e-9b82-624d0760f538"
+										}
+									],
+									"id": "43e13eb4-2b76-4589-b805-5432e3315c0f"
+								}
+							],
+							"id": "64167f89-20d3-43da-a337-11411f601e61"
+						}
+					],
+					"id": "869db94d-bfb9-49f9-aaea-47b2132b3376",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								],
+								"id": "7cf523a6-7452-4654-a5d7-30b83e8aac62"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let index = pm.environment.get('Test-Step-Index-String');",
+									"",
+									"const okResponses = [200, 201, 202, 302];",
+									"",
+									"if((okResponses.indexOf(pm.response.code))!==-1){",
+									"    // Above means that response code belongs to an array",
+									"    pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, ()=> true);",
+									"}else{",
+									"    pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, ()=>",
+									"    {",
+									"         throw new Error(pm.response.text())",
+									"    });",
+									"}"
+								],
+								"id": "b88cdb08-9e71-4407-936a-45bb51389bf6"
+							}
+						}
+					]
+				},
+				{
+					"name": "Merchant On-Boarding Tests",
+					"item": [
+						{
+							"name": "OnboardingMerchantFlow",
+							"item": [
+								{
+									"name": "CreateLegalEntitiesUsingRollback",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"id": "2b8801d8-0be5-4441-a527-942c134d807c"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"const jsonData = pm.response.json();\r",
+													"pm.environment.set(\"unifiedId-For-Onboarding-Merchant\", jsonData.unifiedId);\r",
+													"let index = pm.environment.get('Test-Step-Index-String'); \r",
+													"\r",
+													"for (const key in jsonData){\r",
+													"    if(jsonData.key = \"unifiedId\"){\r",
+													"        pm.test(index + \" unifiedId = \" + jsonData.unifiedId + \" created using rollback\", function (){\r",
+													"            pm.expect('unifiedId' in jsonData).to.eql(true);})\r",
+													"    }else{\r",
+													"        pm.test(\"Other value than unifiedId\", function (){\r",
+													"            pm.expect(true).to.eql(false);\r",
+													"            })\r",
+													"    }\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"id": "37c37158-494e-43ed-a148-f82ff2b091f7"
+											}
+										}
+									],
+									"id": "963017ee-41e8-4ab7-b47f-7a9890aa756f",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{OAuto-2.0-Token-onboarding}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"taxId\": \"RollbackTest\",\r\n    \"streetAddress\": \"Corso Francia 110\",\r\n    \"city\": \"Turin\",\r\n    \"region\": \"Piemonte\",\r\n    \"country\": \"Italy\",\r\n    \"phoneNumber\": \"+39 12 34 567\",\r\n    \"email\": \"test@reply.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{Onboarding-Merchant-Url}}/legalEntities",
+											"host": [
+												"{{Onboarding-Merchant-Url}}"
+											],
+											"path": [
+												"legalEntities"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateNewMerchantsUsingRolleback",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"id": "84bd78d3-e986-49a5-a507-c238525232ac"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let index = pm.environment.get('Test-Step-Index-String');\r",
+													"\r",
+													"var jsonData = pm.response.json();\r",
+													"\r",
+													"pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, function () {\r",
+													"    pm.expect(pm.response.code).to.be.equal(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(index + \" Onboarding merchant with Rollback success\", function () {\r",
+													"    pm.expect(jsonData.title).to.eql(\"Code: 1013 Message: Rollback test. Source: UnifiedCommerce\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"id": "ce55e79b-56ff-4aa4-bd7f-7fc90c8fb3b9"
+											}
+										}
+									],
+									"id": "8253c998-59af-4e05-88cf-92540552054b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{OAuto-2.0-Token-onboarding}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"UnifiedId\": \"{{unifiedId-For-Onboarding-Merchant_Rollback}}\",\r\n    \"SourceMerchantId\": \"12004394\",\r\n    \"Source\": \"Netaxept\",\r\n    \"SourceData\":\"7c(T!Ne4P9-k6xM?jA)2\",\r\n    \"MerchantName\":\"RollbackTest\",\r\n    \"taxId\": \"IT 08013390011\",\r\n    \"StreetAddress\": \"Corso Francia 110\",\r\n    \"City\": \"Turin\",\r\n    \"Region\": \"Piemonte\",\r\n    \"Country\": \"Italy\",\r\n    \"PhoneNumber\": \"+39 12 34 567\",\r\n    \"Email\": \"test@reply.com\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{Onboarding-Merchant-Url}}/merchants",
+											"host": [
+												"{{Onboarding-Merchant-Url}}"
+											],
+											"path": [
+												"merchants"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateClientSecretForMerchant",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"const jsonData = pm.response.json();\r",
+													"let index = pm.environment.get('Test-Step-Index-String');\r",
+													"\r",
+													"if(jsonData.oAuthClientSecret != ''){\r",
+													"    pm.test(index + \" oAuthClientSecret = \" + jsonData.oAuthClientSecret + \" crated\", function () {    \r",
+													"        pm.expect('oAuthClientSecret' in jsonData).to.eql(true);\r",
+													"    });\r",
+													"}else{\r",
+													"    pm.test(\"oAuthClientSecret has no value, oAuthClientSecret not created\", function () {    \r",
+													"        pm.expect(true).to.eql(false);\r",
+													"    });\r",
+													"};"
+												],
+												"type": "text/javascript",
+												"id": "14ded969-ab41-474a-bb02-4b8d3806cad3"
+											}
+										}
+									],
+									"id": "91303774-fb8c-45e7-92f1-97a9f8333535",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{OAuto-2.0-Token-onboarding}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{Onboarding-Merchant-Url}}/merchants/{{unifiedMerchantId-Onboarding}}/clientSecret",
+											"host": [
+												"{{Onboarding-Merchant-Url}}"
+											],
+											"path": [
+												"merchants",
+												"{{unifiedMerchantId-Onboarding}}",
+												"clientSecret"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetUnifiedMerchantIdUsingClientID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"const jsonData = pm.response.json();\r",
+													"const unifiedMerchantIdVariable = pm.variables.get(\"unifiedMerchantId-Onboarding\");\r",
+													"let index = pm.environment.get('Test-Step-Index-String');\r",
+													"\r",
+													"if(jsonData.unifiedMerchantId != null){\r",
+													"    pm.test(index + \" unifiedMerchantId has the same value as created\", function () {    \r",
+													"        pm.expect(jsonData.unifiedMerchantId).to.eql(unifiedMerchantIdVariable);\r",
+													"    });\r",
+													"}else{\r",
+													"    pm.test(\"unifiedMerchantId has 'null' value, unifiedMerchantId not created\", function () {    \r",
+													"        pm.expect(true).to.eql(false);\r",
+													"    });\r",
+													"};\r",
+													"\r",
+													"pm.test(index + \" Source \"+jsonData.source+\" is correct\", function () {\r",
+													"    pm.expect(jsonData.source).to.eql(\"Netaxept\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"id": "9b8e08b3-bdb5-4c41-8ad2-19a5a2db2843"
+											}
+										}
+									],
+									"id": "b45d5d8f-caff-4306-9b6f-1aa24ec864a6",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{OAuto-2.0-Token-onboarding}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{Onboarding-Merchant-Url}}/merchants/{{clientId-Onboarding_Merchant}}",
+											"host": [
+												"{{Onboarding-Merchant-Url}}"
+											],
+											"path": [
+												"merchants",
+												"{{clientId-Onboarding_Merchant}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"id": "a4f862a4-6e6a-44dd-906c-1c18fde0979a"
+						}
+					],
+					"id": "fbe44e4f-d01a-4371-a9a6-1430087aa898",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								],
+								"id": "bdb0e945-ab04-4a70-ac05-ad9f54b3639c"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let index = pm.environment.get('Test-Step-Index-String');",
+									"",
+									"if(pm.info.requestName !== \"CreateNewMerchantsUsingRolleback\"){",
+									"    const okResponses = [200, 201, 202, 302];",
+									"    if((okResponses.indexOf(pm.response.code))!==-1){",
+									"    // Above means that response code belongs to an array",
+									"    pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, ()=> true);",
+									"    }else{",
+									"    pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, ()=>",
+									"    {",
+									"         throw new Error(pm.response.text())",
+									"    });",
+									"    }",
+									"}"
+								],
+								"id": "84a8d2c1-02ef-47b2-a066-f635a16b0aaa"
+							}
+						}
+					]
+				}
+			],
+			"id": "2b4683e1-a47b-47f1-aea4-8cf3de9fb2e0"
+		},
+		{
+			"name": "CCV",
+			"item": [
+				{
+					"name": "Merchant Onboarding Tests",
+					"item": [
+						{
+							"name": "Onboarding Merchant Flow",
+							"item": [
+								{
+									"name": "CreateNewMerchantsForCcvServiceUsingRollback",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"id": "3592874d-d6c7-4664-8ecd-2757abbf4a94"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let index = pm.environment.get('Test-Step-Index-String');\r",
+													"\r",
+													"var jsonData = pm.response.json();\r",
+													"\r",
+													"pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, function () {\r",
+													"    pm.expect(pm.response.code).to.be.equal(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(index + \" Onboarding merchant with Rollback success\", function () {\r",
+													"    pm.expect(jsonData.title).to.eql(\"Code: 1013 Message: Rollback test. Source: UnifiedCommerce\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"id": "d941e417-6a22-41ea-adfc-389a8f697b27"
+											}
+										}
+									],
+									"id": "3a2bcb17-b002-4a33-977f-167e93d453f4",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{OAuto-2.0-Token-onboarding}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"UnifiedId\": \"{{unifiedId-For-Onboarding-Merchant_Rollback}}\",\r\n    \"SourceMerchantId\": \"9753999\",\r\n    \"Source\": \"Ccv\",\r\n    \"MerchantName\":\"RollbackTest\",\r\n    \"taxId\": \"IT 08013390011\",\r\n    \"StreetAddress\": \"Corso Francia 110\",\r\n    \"City\": \"Turin\",\r\n    \"Region\": \"Piemonte\",\r\n    \"Country\": \"Italy\",\r\n    \"PhoneNumber\": \"+39 12 34 567\",\r\n    \"Email\": \"test@reply.com\",\r\n    \"sourceData\": \"[{\\\"terminalId\\\":\\\"2\\\",\\\"utcOffset\\\":\\\"+1\\\",\\\"storeId\\\":\\\"2\\\",\\\"storeName\\\":\\\"Store 2\\\"}, {\\\"terminalId\\\":\\\"4\\\",\\\"utcOffset\\\":\\\"+1\\\",\\\"storeId\\\":\\\"2\\\",\\\"storeName\\\":\\\"Store 22\\\"}, {\\\"terminalId\\\":\\\"6\\\",\\\"utcOffset\\\":\\\"+1\\\",\\\"storeId\\\":\\\"8\\\",\\\"storeName\\\":\\\"Store 4\\\"}]\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{Onboarding-Merchant-Url}}/merchants",
+											"host": [
+												"{{Onboarding-Merchant-Url}}"
+											],
+											"path": [
+												"merchants"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateClientSecretForMerchant",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"const jsonData = pm.response.json();\r",
+													"let index = pm.environment.get('Test-Step-Index-String');\r",
+													"\r",
+													"if(jsonData.oAuthClientSecret != ''){\r",
+													"    pm.test(index + \" oAuthClientSecret = \" + jsonData.oAuthClientSecret + \" crated\", function () {    \r",
+													"        pm.expect('oAuthClientSecret' in jsonData).to.eql(true);\r",
+													"    });\r",
+													"}else{\r",
+													"    pm.test(\"oAuthClientSecret has no value, oAuthClientSecret not created\", function () {    \r",
+													"        pm.expect(true).to.eql(false);\r",
+													"    });\r",
+													"};"
+												],
+												"type": "text/javascript",
+												"id": "c9f5367c-9494-4cee-ac46-fff8fb1f055f"
+											}
+										}
+									],
+									"id": "1f00d2cb-1123-42c1-94cb-fb377acb86b0",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{OAuto-2.0-Token-onboarding}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{Onboarding-Merchant-Url}}/merchants/{{unifiedMerchantId-Onboarding-CCV}}/clientSecret",
+											"host": [
+												"{{Onboarding-Merchant-Url}}"
+											],
+											"path": [
+												"merchants",
+												"{{unifiedMerchantId-Onboarding-CCV}}",
+												"clientSecret"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetUnifiedMerchantIdUsingClientID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"const jsonData = pm.response.json();\r",
+													"const unifiedMerchantIdVariable = pm.variables.get(\"unifiedMerchantId-Onboarding-CCV\");\r",
+													"let index = pm.environment.get('Test-Step-Index-String');\r",
+													"\r",
+													"if(jsonData.unifiedMerchantId != null){\r",
+													"    pm.test(index + \" unifiedMerchantId has the same value as created\", function () {    \r",
+													"        pm.expect(jsonData.unifiedMerchantId).to.eql(unifiedMerchantIdVariable);\r",
+													"    });\r",
+													"}else{\r",
+													"    pm.test(\"unifiedMerchantId has 'null' value, unifiedMerchantId not created\", function () {    \r",
+													"        pm.expect(true).to.eql(false);\r",
+													"    });\r",
+													"}\r",
+													"\r",
+													"pm.test(index + \" Source \"+jsonData.source+\" is correct\", function () {\r",
+													"    pm.expect(jsonData.source).to.eql(\"CCV\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"id": "f8b07c46-7fe3-482f-9a8d-ce333b6387ec"
+											}
+										}
+									],
+									"id": "7ac3aef9-bb7a-432b-93c8-4d1cfefeb304",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{OAuto-2.0-Token-onboarding}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{Onboarding-Merchant-Url}}/merchants/{{clientId-Onboarding_Merchant-CCV}}",
+											"host": [
+												"{{Onboarding-Merchant-Url}}"
+											],
+											"path": [
+												"merchants",
+												"{{clientId-Onboarding_Merchant-CCV}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"id": "ecf58be2-e466-43d5-9923-9def77d05a56"
+						}
+					],
+					"id": "631d225d-f3ad-4002-8e40-a707a44986a2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								],
+								"id": "c5763ec5-e536-4263-8ec4-131ad6e7dcf2"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let index = pm.environment.get('Test-Step-Index-String');",
+									"",
+									"if(pm.info.requestName !== \"CreateNewMerchantsForCcvServiceUsingRollback\"){",
+									"    const okResponses = [200, 201, 202, 302];",
+									"    if((okResponses.indexOf(pm.response.code))!==-1){",
+									"    // Above means that response code belongs to an array",
+									"    pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, ()=> true);",
+									"    }else{",
+									"    pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, ()=>",
+									"    {",
+									"         throw new Error(pm.response.text())",
+									"    });",
+									"    }",
+									"}"
+								],
+								"id": "f14e54bc-9984-4127-a695-2f6fa0a838f6"
+							}
+						}
+					]
+				},
+				{
+					"name": "Payments",
+					"item": [
+						{
+							"name": "GenerateToken",
+							"item": [
+								{
+									"name": "GenerateAccessTokenPaymentsCcv",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"if(pm.environment.get('TestTransactionIdCCV')===(\"stop\")){\r",
+													"    postman.setNextRequest(null)\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"id": "04478b5a-5b7b-41e3-baf8-6ad0e58ff4a0"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json()\r",
+													"let index = pm.environment.get('Test-Step-Index-String'); \r",
+													"pm.test(index+\" 2.0 Auth token exists \", function () {\r",
+													"    pm.expect('access_token' in jsonData).to.eql(true);\r",
+													"\r",
+													"    if(jsonData.access_token){\r",
+													"        pm.environment.set('OAuto-2.0-Token', jsonData.access_token);\r",
+													"    }\r",
+													"});\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"id": "73bc6a7b-07a6-4d6a-bfd8-517580d252ae"
+											}
+										}
+									],
+									"id": "4c2793ea-e794-4ab1-aba2-41d3f0295070",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{OAuth-2.0-Password-Payments-CCV}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{OAuth-2.0-ClientId-Payments-CCV}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "grant_type",
+													"value": "client_credentials",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "{{Api-Scope-PaymantService}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "https://login.microsoftonline.com/{{Api-TenantId}}/oauth2/v2.0/token",
+											"protocol": "https",
+											"host": [
+												"login",
+												"microsoftonline",
+												"com"
+											],
+											"path": [
+												"{{Api-TenantId}}",
+												"oauth2",
+												"v2.0",
+												"token"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"id": "4b1d080b-bd44-4d89-9530-6a1b7e0aa59f"
+						},
+						{
+							"name": "GetPayment",
+							"item": [
+								{
+									"name": "GetPaymentFromCcvService",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"id": "bd1fa3ab-9546-4f2d-bdbe-e1b24d34524c"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json()\r",
+													"let index = pm.environment.get('Test-Step-Index-String');  \r",
+													"\r",
+													"pm.test(index + \" Terminal Id is correct\", function () {\r",
+													"    pm.expect(jsonData.authorizations[0].terminalId).to.eql(\"69073273\")\r",
+													"});\r",
+													"\r",
+													"pm.test(index + \" Currency code is correct\", function () {\r",
+													"    pm.expect(jsonData.currencyCode).to.eql(\"EUR\")\r",
+													"});\r",
+													"\r",
+													"pm.test(index + \" Order number is correct\", function () {\r",
+													"    pm.expect(jsonData.paymentNumber).to.eql(\"TestOrder-1000113\")\r",
+													"});\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"id": "fe5a9455-5501-4bb2-bd97-31c56cde4891"
+											}
+										}
+									],
+									"id": "c471745c-31c0-4b8a-a987-b8940ef28059",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true,
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{OAuto-2.0-Token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PaymentServiceURL}}/{{TestTransactionIdCCV}}",
+											"host": [
+												"{{PaymentServiceURL}}"
+											],
+											"path": [
+												"{{TestTransactionIdCCV}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"id": "8a8fa410-16f3-4187-8609-38186dee8f91"
+						}
+					],
+					"id": "4b4fe96d-cfe8-48ca-bdc8-c35cfd44bc9a",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								],
+								"id": "98665521-3b66-4fde-a3ba-b2205bf7a6f4"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let index = pm.environment.get('Test-Step-Index-String');",
+									"",
+									"const okResponses = [200, 201, 202, 302];",
+									"",
+									"if((okResponses.indexOf(pm.response.code))!==-1){",
+									"    // Above means that response code belongs to an array",
+									"    pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, ()=> true);",
+									"}else{",
+									"    pm.test(index + pm.request.method + \" request for |\" + pm.info.requestName+ \"| returned \"+ pm.response.code, ()=>",
+									"    {",
+									"         throw new Error(pm.response.text())",
+									"    });",
+									"}"
+								],
+								"id": "70137970-0578-487a-8df8-61c45ec33ae6"
+							}
+						}
+					]
+				}
+			],
+			"id": "eee91da2-2ab8-41f0-988b-0ef5a69b061d"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"utils = {",
+					"  //////////////////",
+					"//   increaseOrderNumber:function(){",
+					"//         var orderNumber = pm.environment.get('Reponse-Order-Number');",
+					"//         orderNumber = parseInt(orderNumber) + 1;",
+					"//         pm.environment.set('Reponse-Order-Number', orderNumber);",
+					"//         console.log('Order-Number:::'+ orderNumber);",
+					"//   },",
+					"",
+					"  increaseTestStepIndex:function(){",
+					"      let testStepIndex = pm.environment.get('Test-Step-Index');",
+					"      testStepIndex = parseInt(testStepIndex) +1;",
+					"      pm.environment.set('Test-Step-Index', testStepIndex);",
+					"  },",
+					"  //////////////////",
+					"",
+					"};",
+					"utils.increaseTestStepIndex();"
+				],
+				"id": "c3861a29-1f96-44ea-8489-ec7ddee75286"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"let index = pm.environment.get('Test-Step-Index');",
+					"",
+					"if(index<100 && index>=10){",
+					"    index = \"0\" + index;",
+					"}",
+					"",
+					"if(index<10){",
+					"    index = \"00\" +index; ",
+					"}",
+					"",
+					"index = \"[\"+ index + \"] \"",
+					"pm.environment.set('Test-Step-Index-String', index);",
+					"",
+					""
+				],
+				"id": "d8c6cb6d-3597-421d-be14-fd5fae129b8a"
+			}
+		}
+	]
+}

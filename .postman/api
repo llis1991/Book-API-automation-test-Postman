@@ -1,0 +1,14 @@
+id = b228ceeb-99e6-4892-807e-65e0d40f36ba
+
+[relations]
+
+[relations.collections]
+rootDirectory = postman/collections
+files[] = {"id":"19278370-822e3155-0d4d-4495-90a1-4bac030ab5df","path":"Unified API - Regression.json","metaData":{}}
+
+[relations.collections.metaData]
+
+[relations.apiDefinition]
+rootDirectory = postman/schemas
+
+[relations.apiDefinition.metaData]
