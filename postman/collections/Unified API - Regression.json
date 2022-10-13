@@ -2873,16 +2873,17 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "5b32cb47-51cc-4b9c-8234-b462e532e879",
 								"type": "text/javascript",
 								"exec": [
 									""
-								],
-								"id": "7cf523a6-7452-4654-a5d7-30b83e8aac62"
+								]
 							}
 						},
 						{
 							"listen": "test",
 							"script": {
+								"id": "8cc73d7d-fbbb-49fa-85ba-58095dbb85f9",
 								"type": "text/javascript",
 								"exec": [
 									"let index = pm.environment.get('Test-Step-Index-String');",
@@ -2897,9 +2898,10 @@
 									"    {",
 									"         throw new Error(pm.response.text())",
 									"    });",
-									"}"
-								],
-								"id": "b88cdb08-9e71-4407-936a-45bb51389bf6"
+									"}",
+									"",
+									""
+								]
 							}
 						}
 					]
